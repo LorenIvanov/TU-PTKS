@@ -20,8 +20,9 @@ public class PersonThread extends Thread {
     @Override
     public void run() {
         for (int i = 0; i < blocksToMine; i++) {
+            Block block = block();
+
             if (Blockchain.isChainValid()) {
-                Block block = block();
                 Blockchain.blockchain.add(block);
                 blocksMined++;
             } else {
@@ -33,8 +34,12 @@ public class PersonThread extends Thread {
     private Block block() {
         String data = name + " " + String.valueOf(blocksMined);
         int difficulty = ThreadLocalRandom.current().nextInt(difficultyFrom, difficultyTo);
-        Block block = new Block(data, String.valueOf(Blockchain.blockchain.get(Blockchain.blockchain.size() - 1).hash), difficulty);
+
+        String previousHash = String.valueOf(Blockchain.blockchain.get(Blockchain.blockchain.size() - 1).hash);
+
+        Block block = new Block(data, previousHash, difficulty);
         block.mineBlock(difficulty);
+
         if (Blockchain.blockchain.get(Blockchain.blockchain.size() - 1).hash == block.previousHash) {
             return block;
         } else {

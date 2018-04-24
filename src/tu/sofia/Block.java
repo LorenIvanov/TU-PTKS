@@ -3,6 +3,8 @@ package tu.sofia;
 import java.util.Date;
 
 public class Block {
+    
+    public int difficulty;
     public String hash;
     public String previousHash;
     // Data will be a simple message.
@@ -10,7 +12,6 @@ public class Block {
     // Number of milliseconds since 1/1/1970.
     private long timeStamp;
     private int nonce;
-    public int difficulty;
 
     // Block Constructor.
     public Block(String data, String previousHash, int difficulty) {

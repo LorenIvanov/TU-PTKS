@@ -16,14 +16,14 @@ public class Blockchain {
         blockchain.add(new Block("Hi I am the first block", "0", 0));
 
         PersonThread georgi = new PersonThread("Georgi", 60, 3, 4);
-        PersonThread petar = new PersonThread("Ivan", 70, 2, 4);
+        PersonThread todor = new PersonThread("Todor", 70, 2, 4);
 
         BadPersonThread badPerson = new BadPersonThread("Bad person", 5);
 
         ExecutorService executor = Executors.newFixedThreadPool(3);
 
         executor.execute(georgi);
-        executor.execute(petar);
+        executor.execute(todor);
         TimeUnit.SECONDS.sleep(1);
         executor.execute(badPerson);
 
